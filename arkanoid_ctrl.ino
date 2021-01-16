@@ -6,8 +6,8 @@
 // mouse
 const int posXMax = 1023;
 const int posXMin = 0;
-const int mouseStep = 10;
-int posX = posXMax / 2;
+const int mouseStep = 20;
+int posX = 0; //posXMax / 2;
 
 
 // encoder
@@ -26,9 +26,9 @@ void isr()
 {
   delay(4); // delay for Debouncing
   if (digitalRead(PinCLK))
-    rotationdirection = !digitalRead(PinDT);
-  else
     rotationdirection = digitalRead(PinDT);
+  else
+    rotationdirection = !digitalRead(PinDT);
     
   TurnDetected = true;
 }
@@ -36,6 +36,8 @@ void isr()
 void setup()
 {
   Serial.begin(9600);
+  Serial.println("Setup serial communication");
+  
   pinMode(PinCLK, INPUT);
   pinMode(PinDT, INPUT);
   pinMode(PinSW, INPUT);
@@ -44,8 +46,6 @@ void setup()
   attachInterrupt(0, isr, FALLING);
   
   Mouse.begin(); //Init mouse emulation
-
-  Serial.println("Setup serial communication");
 }
 
 void loop()
@@ -67,27 +67,20 @@ void loop()
     if (rotationdirection)
     {
       RotaryPosition = RotaryPosition - 1;
-      // Move mouse A-CW
-      posX -= mouseStep;
-      if (posX < posXMin){
-        posX = posXMin;
-      }
+      // Move mouse A-CW 
+      Mouse.move(-mouseStep,0,0);  
       Serial.println("Mouve A-CW");
     }
     else
     {
       RotaryPosition = RotaryPosition + 1;
       // Move mouse CW
-      posX += mouseStep;
-      if (posX > posXMax){
-        posX = posXMax;
-      }
+      Mouse.move(mouseStep,0,0);  
       Serial.println("Mouve CW");
     }
     Serial.println(RotaryPosition);
     
-    Mouse.move(posX,0,0);  
-    
+    delay(2); // response delay
     TurnDetected = false;
   }
 }
