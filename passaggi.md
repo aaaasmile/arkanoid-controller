@@ -1,16 +1,18 @@
 # Arkanoid-controller
 E' un eperimento per avere un controller a rotazione per il gioco arcade Arkanoid. 
-Per realizzarlo uso un  Arduino Nano V3 e un Rotary Encoder KY-040
+Per realizzarlo uso un  Arduino Leonardo e un Rotary Encoder KY-040
 Il Rotary Encoder era nel kit Lafvin.
+Nota che l'Aurduino Nano non può essere usato come mouse inquanto la libreria <mouse.h> non 
+funziona.
 
 ## Collegamenti:
 5 fili:
 
-* Controller GND al pin gnd del Nano
-* Controller + al pin 5V del Nano
-* Controller SW al pin D4 del Nano
-* Controller DT al pin D3 del Nano
-* Controller CLK al pin D2 del Nano
+* Controller GND al pin gnd del Leonardo
+* Controller + al pin 5V del Leonardo
+* Controller SW al pin D4 del Leonardo
+* Controller DT al pin D3 del Leonardo
+* Controller CLK al pin D2 del Leonardo
 
 ![Schema](/images/wire.jpg)
 
