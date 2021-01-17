@@ -21,3 +21,12 @@ Sono partito dall'esempio di Lafvin che però usa il rotary per controllare un m
 Interessante la parte che legge il verso della rotazione attraverso un interrupt.
 Il senso della rotazione CW (orario) o A-CW (antioraria) si ha con il controller
 posizionato con i fili in alto
+
+Un altro aspetto è la comunicazione seriale. Se è abilitata per un debug
+una volta spento il monitor seriale, l'emulazione del mouse non ha più funzionato in modo
+corretto.
+
+### MouseMove
+La funzione è disponibile sono in Leonardo (Pro Micro ATmega32U4), non nel Nano.
+Il mouse si sposta solo lungo l'asse x. Il valore è l'incremento (o decremento) della posizione
+attuale. Un valore attorno al 20 è quello che mi sembra più adatto. 
