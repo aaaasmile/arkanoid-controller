@@ -35,8 +35,8 @@ void isr()
 
 void setup()
 {
-  Serial.begin(9600);
-  Serial.println("Setup serial communication");
+  //Serial.begin(9600);
+  //Serial.println("Setup serial communication");
   
   pinMode(PinCLK, INPUT);
   pinMode(PinDT, INPUT);
@@ -56,7 +56,7 @@ void loop()
     if (RotaryPosition != 0)
     {
       RotaryPosition = 0;
-      Serial.println("Reset position to zero");
+      //Serial.println("Reset position to zero");
     }
   }
 
@@ -69,16 +69,16 @@ void loop()
       RotaryPosition = RotaryPosition - 1;
       // Move mouse A-CW 
       Mouse.move(-mouseStep,0,0);  
-      Serial.println("Mouve A-CW");
+      //Serial.println("Mouve A-CW");
     }
     else
     {
       RotaryPosition = RotaryPosition + 1;
       // Move mouse CW
       Mouse.move(mouseStep,0,0);  
-      Serial.println("Mouve CW");
+      //Serial.println("Mouve CW");
     }
-    Serial.println(RotaryPosition);
+    //Serial.println(RotaryPosition);
     
     delay(2); // response delay
     TurnDetected = false;
